@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 
@@ -35,22 +36,39 @@ import java.util.Scanner;
 public class Main {
 
     public static Scanner scan = new Scanner(System.in);
-    public static String answer;
+    public static String answer = "y";
+    public static boolean details = false;
     public static ArrayList TD = new ArrayList<>();
+    public static ArrayList Weight = new ArrayList<>();
+    public static ArrayList TDOUT = new ArrayList<>();
     public static boolean progres = true;
     public static int lengthOfLine = 0;
+    public static Random generator = new Random();
 
     public static void main(String[] args) {
 
         System.out.println(">>>----------------------------------<<<");
         System.out.println(">>>--------- Sieć Neuronowa ---------<<<");
         System.out.println(">>>------ Inteligentny Magazyn ------<<<");
+        System.out.println(">>>------- Propagacja wsteczna ------<<<");
         System.out.println(">>>----------------------------------<<<");
         System.out.println(">>>------ Aleksander Sinkowski ------<<<");
         System.out.println(">>>--------- Serhii Rizychuk --------<<<");
         System.out.println(">>>----------------------------------<<<");
-        System.out.println(">>Wczytywanie plików projektu...");
-        System.out.println(">OK");
+        System.out.println(">>>------ Input: 4 ------------------<<<");
+        System.out.println(">>>------ Output: 1 -----------------<<<");
+        System.out.println(">>>------ Connects: 24 --------------<<<");
+        System.out.println(">>>------ Hidden Layouts: 2 ---------<<<");
+        System.out.println(">>>------ Hidden Neurons: 6 ---------<<<");
+        System.out.println(">>>------ Learning items: 75 --------<<<");
+        System.out.println(">>>----------------------------------<<<");
+        System.out.println(">>Wyświetlić szczegóły uruchamiania? y/n");
+        System.out.print(">");
+
+        answer = scan.next();
+        if (answer.equals("y"))details = true;
+        System.out.println();
+
 /*
   |\      _,,,--,,_  ,)
   /,`.-'`'   -,  ;-;;'
@@ -60,25 +78,56 @@ public class Main {
 */
         ReadDataFile();
         if (progres == false)return;
-        checkArrayListOfTestData();
-
+        if (details==true)checkArrayListOfTestData();
+        CreateWeight();
+        if (details==true)checkWeight();
         System.out.println(">>Uczenie sieci...");
+        System.out.println(">In progress...");
+
+
+    }
+
+
+    /*
+      |\      _,,,--,,_  ,)
+      /,`.-'`'   -,  ;-;;'
+     |,4-  ) )-,_ ) /\
+    '---''(_/--' (_/-'
+    >>>Create weights list
+    */
+    private static void CreateWeight() {
+        System.out.println(">>Generowanie 24 wag...");
+        double tmp = 0;
+        double tmp2 = 0;
+        for(int i = 0; i<24; i++){
+            tmp = generator.nextInt();
+            if(tmp % 2 == 0) {
+                tmp2 = generator.nextDouble();
+            }else{
+                tmp2 = generator.nextDouble() * -1;
+            }
+            Weight.add(tmp2);
+        }
         System.out.println(">OK");
-        System.out.println(">>System w pełni sprawny.");
-        System.out.println(">>>");
-        System.out.println(">>>----------------------------------<<<");
-        System.out.println(">>>      1 - Sprzety techniczne      <<<");
-        System.out.println(">>>      2 - RTV/AGD                 <<<");
-        System.out.println(">>>      3 - Odziez                  <<<");
-        System.out.println(">>>      4 - Spozywcze               <<<");
-        System.out.println(">>>----------------------------------<<<");
-        System.out.println(">>>Prosze podac nr kategorii produktu<<<");
-        System.out.println(">>>----------------------------------<<<");
-
-//        System.out.print(">Numer: ");
-//        answer = scan.next();
+    }
 
 
+
+    /*
+      |\      _,,,--,,_  ,)
+      /,`.-'`'   -,  ;-;;'
+     |,4-  ) )-,_ ) /\
+    '---''(_/--' (_/-'
+    >>>Check weights list
+    */
+    private static void checkWeight() {
+        System.out.println(">>Sprawdzanie wag: ");
+        for(int i = 0; i<24; i++){
+            if (i % 3 == 0)System.out.println();
+            System.out.print("   " + Weight.get(i));
+        }
+        System.out.println();
+        System.out.println(">>Koniec sprawdzania.");
     }
 
 
@@ -113,15 +162,16 @@ public class Main {
     >>>Loading data from .txt file to ArrayList
     */
     public static void ReadDataFile() {
-        System.out.println(">>Wczytywanie danych uczących...");
+        System.out.println(">>Rozpoczęto wczytywanie tst.txt...");
         try {
             Path currentRelativePath = Paths.get("");
             String s = currentRelativePath.toAbsolutePath().toString();
             s += "\\tst.txt";
-            System.out.println(">>>>Ustalenie ścieżki: " + s);
-            System.out.println(">>>OK");
+            System.out.println(">>Ustalenie ścieżki: " + s);
+            System.out.println(">OK");
             BufferedReader br = new BufferedReader(new FileReader(s));
             String line;
+            System.out.println(">>Wczytywanie danych uczących...");
             while ((line = br.readLine()) != null) {
                 String[] exploded = line.split(";");
                 lengthOfLine = exploded.length;
