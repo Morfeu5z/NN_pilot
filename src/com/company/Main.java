@@ -66,7 +66,6 @@ public class Main {
         System.out.println(">OK");
         System.out.println(">>System w pełni sprawny.");
         System.out.println(">>>");
-        System.out.println(">>>");
         System.out.println(">>>----------------------------------<<<");
         System.out.println(">>>      1 - Sprzety techniczne      <<<");
         System.out.println(">>>      2 - RTV/AGD                 <<<");
@@ -98,7 +97,7 @@ public class Main {
                 licz = 0;
                 System.out.println();
             }
-            System.out.print(" " + TD.get(i));
+            if (licz!=0)System.out.print(" " + TD.get(i));
             licz++;
         }
         System.out.println();
@@ -111,7 +110,7 @@ public class Main {
       /,`.-'`'   -,  ;-;;'
      |,4-  ) )-,_ ) /\
     '---''(_/--' (_/-'
-    >>>Loading data from .txt file to arraylist
+    >>>Loading data from .txt file to ArrayList
     */
     public static void ReadDataFile() {
         System.out.println(">>Wczytywanie danych uczących...");
