@@ -124,6 +124,7 @@ public class Main {
             for (int i = 0; i < 4; i++) {
                 path = (inputA * (double) Weight.get(lOW)) + (inputB * (double) Weight.get(lOW + 1)) + (inputC * (double) Weight.get(lOW + 2)) + (inputD * (double) Weight.get(lOW + 3));
                 lOW += 4;
+                path = 1 / (1 + Math.pow(Math.E, (-path)));
                 HLOne.add(path);//dodanie kolejno 4 wartości neuronów do wrastwy ukrytej pierwszej
             }
             System.out.println("Sprawdzenie...");
@@ -145,6 +146,7 @@ public class Main {
             for (int i = 0; i < 2; i++) {
                 path = (inputE * (double) Weight.get(lOW)) + (inputF * (double) Weight.get(lOW + 1)) + (inputG * (double) Weight.get(lOW + 2)) + (inputH * (double) Weight.get(lOW + 3));
                 lOW += 4;
+                path = 1 / (1 + Math.pow(Math.E, (-path)));
                 HLTwo.add(path);//dodanie kolejno 2 wartości neuronów do wrastwy ukrytej drugiej
             }
             System.out.println("Sprawdzenie...");
@@ -163,6 +165,7 @@ public class Main {
 
             path = (inputI * (double) Weight.get(lOW)) + (inputJ * (double) Weight.get(lOW + 1));
             lOW += 2;
+            path = 1 / (1 + Math.pow(Math.E, (-path)));
             TDOUT.add(path);//dodanie kolejno 2 wartości neuronów do wrastwy ukrytej drugiej
             System.out.println("Output: " + TDOUT.get(z));//dodanie kolejno 4 wartości neuronów z wrastwy ukrytej pierwszej
 
