@@ -72,4 +72,4 @@ Czekoladki;4;3;2;2;S/S/W/OT;
 Ciastka zapakowane;4;3;2;2;S/S/C/ON;
 Ciastka kruche;4;3;2;2;S/S/C/OT;
 Mineralna;4;4;1;0;S/N/W;
-Mineralna;4;4;2;0;S/N/S;
+Orange Juice;4;4;2;0;S/N/S;
